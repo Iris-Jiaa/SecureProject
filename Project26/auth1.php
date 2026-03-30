@@ -1,7 +1,8 @@
 <?php
 	include_once 'header.php';
 	if (!isset($_SESSION['u_id'])) {
-	header("Location: home.php");
+		header("Location: home.php");
+		exit();
 	} else {
 		$user_id = $_SESSION['u_id']; 
 		$user_uid = $_SESSION['u_uid'];
@@ -24,7 +25,7 @@
 
 	function cleanChars($val)
 	{
-	return $val;
+		return htmlspecialchars($val, ENT_QUOTES, 'UTF-8');
 	}
 ?>
 
@@ -76,7 +77,7 @@ Objectives
 		if (isset($_REQUEST['target'])) {
 			$target = $_REQUEST['target'];
 			
-			// 【核心修复】验证输入是否为合法的 IP 地址
+			// Verify that the input is a valid IP address.
 			if (filter_var($target, FILTER_VALIDATE_IP)) {
 				if (stristr(php_uname('s'), 'Windows NT')) { 
 					$cmd = shell_exec( 'ping ' . $target );
@@ -86,7 +87,7 @@ Objectives
 					echo '<pre>'.$cmd.'</pre>';
 				}
 			} else {
-				// 如果输入的不是纯粹的 IP 地址，直接拒绝执行
+				// If the input is not a valid IP address, reject it.
 				echo '<p style="color:red;">Error: Please enter a valid IP address, no special characters are allowed!</p>';
 			}
 		}            

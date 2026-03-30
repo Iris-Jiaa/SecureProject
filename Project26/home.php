@@ -7,7 +7,7 @@
 				Welcome to this Super Secure PHP Application.
 				
 				<?php
-					$conn = mysqli_connect("localhost:3307","TEST","");
+					$conn = mysqli_connect("localhost","TEST","");
 					
 					 if(! $conn ) {
 						die('Could not connect: ' . mysql_error());

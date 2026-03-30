@@ -1,7 +1,8 @@
 <?php
 	include_once 'header.php';
 	if (!isset($_SESSION['u_id'])) {
-	header("Location: home.php");
+		header("Location: home.php");
+		exit();
 	} else {
 		$user_id = $_SESSION['u_id'];
 		$user_uid = $_SESSION['u_uid'];
@@ -18,7 +19,8 @@
 				if(file_exists($safeFile)) 
 				{
     				$FileData = file_get_contents($safeFile);
-    				echo htmlspecialchars($FileData); // 顺便防止 XSS 攻击
+    				// Convert newline characters to <br> tags
+					echo nl2br(htmlspecialchars($FileData, ENT_QUOTES, 'UTF-8'));
 				}
 				else
 				{

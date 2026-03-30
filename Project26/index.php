@@ -22,7 +22,7 @@
 		if (isset($_POST['createDatabase'])) {
         try {
             // Connect to MySQL server
-            $conn = new PDO("mysql:host=$host;port=3307", $username, $password);
+            $conn = new PDO("mysql:host=$host", $username, $password);
 
             // Set the PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
